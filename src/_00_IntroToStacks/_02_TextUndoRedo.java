@@ -47,16 +47,22 @@ public class _02_TextUndoRedo implements KeyListener {
 	public void keyTyped(KeyEvent e) {
 		// TODO Auto-generated method stub
 		char c = e.getKeyChar();
-		label.setText(label.getText() + c);
-		frame.pack();
+		if (Character.isDigit(c) || Character.isLetter(c)) {
+			label.setText(label.getText() + c);
+			chars.add(c);
+			frame.pack();
+		}
+
 	}
 
-	
 	@Override
 	public void keyPressed(KeyEvent e) {
 		// TODO Auto-generated method stub
 		int c = e.getKeyCode();
-		//here
+		if(c == KeyEvent.VK_BACK_SPACE) {
+			chars.pop();
+			label.setText(label.getText().substring(0, label.getText().length() - 1));
+		}
 	}
 
 	// Not needed

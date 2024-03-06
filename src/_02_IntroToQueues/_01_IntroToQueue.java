@@ -34,7 +34,7 @@ public class _01_IntroToQueue {
     public static void main(String[] args) {
         // 1. Create a Stack of Doubles using the Stack class
         //    Note: you have to use the capitalized Double and not double
-
+    	
         // 2. Use a loop to add 100 random doubles between 0 and 100 to the Stack
 
         // 3. Create a Queue of Doubles using the ArrayDeque class
