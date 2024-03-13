@@ -32,10 +32,59 @@ import java.util.ArrayDeque;
  * Instructions are in the BaseBallTicketsTest class.
  */
 
+/*
+ * OBJECTIVE:
+ * Complete the calculateWaitTime() method to return the amount of time it
+ * takes to get the tickets.
+ *  
+ * You managed to send your friend to queue for tickets in your stead, but
+ * there is a catch: he will get there only if you tell him how much that is
+ * going to take. And everybody can only take ONE TICKET at a time, then they
+ * go back in the last position of the queue if they need more (or go home if
+ * they are fine).
+ * 
+ * Each ticket takes one minutes to emit with no wasted time between purchases.
+ * You will be given a queue with all the people queuing and the initial
+ * position of your buddy.
+ * 
+ * Example:0  1  2  3  4
+ * queue: [2, 5, 3, 4, 6]
+ * position: 1 (the person who wants to buy 5 tickets)
+ * 
+ * The first person buys 1 ticket then moves to the back of the queue because
+ * they still need to buy 1 more ticket. Everyone else moves up the queue.
+ * queue: [5, 3, 4, 6, 1]
+ * 
+ * Now it's your turn to buy a ticket. You buy 1 and move to the back of the
+ * queue because you still need to buy 4 more
+ * queue: [3, 4, 6, 1, 4]
+ *
+ * For this queue it takes a total of 18 minutes!
+ */
+
 public class _02_BaseballTickets {
 
-    public static int calculateWaitTime( ArrayDeque<Integer> ticketsQueue, int position ) {
-        
-        return -1;
-    }
+	public static int calculateWaitTime(ArrayDeque<Integer> ticketsQueue, int position) {
+		int count = 0;
+
+		while (!ticketsQueue.isEmpty()) {
+			int val = ticketsQueue.pop() - 1;
+			if (position == 0) {
+				if (val == 0) {
+					break;
+				}
+				ticketsQueue.push(val);
+				position = ticketsQueue.size() - 1;
+			} else {
+				if (val > 0) {
+					ticketsQueue.push(val);
+				}
+				position -= 1;
+				count++;
+			}
+
+		}
+
+		return count;
+	}
 }
